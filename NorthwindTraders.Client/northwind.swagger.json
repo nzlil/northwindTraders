@@ -1,0 +1,767 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "NorthwindTraders API"
+  },
+  "paths": {
+    "/api/Customers": {
+      "get": {
+        "tags": [ "Customers" ],
+        "operationId": "ApiCustomersGet",
+        "consumes": [],
+        "produces": [ "text/plain", "application/json", "text/json" ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "$ref": "#/definitions/Customer" }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [ "Customers" ],
+        "operationId": "ApiCustomersPost",
+        "consumes": [ "application/json-patch+json", "application/json", "text/json", "application/*+json" ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/Customer" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      }
+    },
+    "/api/Customers/{id}": {
+      "get": {
+        "tags": [ "Customers" ],
+        "operationId": "ApiCustomersByIdGet",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Success" },
+          "404": { "description": "Not Found" },
+          "0": {}
+        }
+      },
+      "put": {
+        "tags": [ "Customers" ],
+        "operationId": "ApiCustomersByIdPut",
+        "consumes": [ "application/json-patch+json", "application/json", "text/json", "application/*+json" ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/Customer" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Success" },
+          "404": { "description": "Not Found" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      },
+      "delete": {
+        "tags": [ "Customers" ],
+        "operationId": "ApiCustomersByIdDelete",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Success" },
+          "404": { "description": "Not Found" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      }
+    },
+    "/api/Values": {
+      "get": {
+        "tags": [ "Values" ],
+        "operationId": "ApiValuesGet",
+        "consumes": [],
+        "produces": [ "text/plain", "application/json", "text/json" ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [ "Values" ],
+        "operationId": "ApiValuesPost",
+        "consumes": [ "application/json-patch+json", "application/json", "text/json", "application/*+json" ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Success" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      }
+    },
+    "/api/Values/{id}": {
+      "get": {
+        "tags": [ "Values" ],
+        "operationId": "ApiValuesByIdGet",
+        "consumes": [],
+        "produces": [ "text/plain", "application/json", "text/json" ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "type": "string" }
+          },
+          "404": { "description": "Not Found" },
+          "0": {}
+        }
+      },
+      "put": {
+        "tags": [ "Values" ],
+        "operationId": "ApiValuesByIdPut",
+        "consumes": [ "application/json-patch+json", "application/json", "text/json", "application/*+json" ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Success" },
+          "404": { "description": "Not Found" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      },
+      "delete": {
+        "tags": [ "Values" ],
+        "operationId": "ApiValuesByIdDelete",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Success" },
+          "404": { "description": "Not Found" },
+          "400": { "description": "Bad Request" },
+          "0": {}
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Customer": {
+      "required": [ "companyName" ],
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "maxLength": 5,
+          "minLength": 0,
+          "type": "string"
+        },
+        "companyName": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "contactName": {
+          "maxLength": 30,
+          "minLength": 0,
+          "type": "string"
+        },
+        "contactTitle": {
+          "maxLength": 30,
+          "minLength": 0,
+          "type": "string"
+        },
+        "address": {
+          "maxLength": 60,
+          "minLength": 0,
+          "type": "string"
+        },
+        "city": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "region": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "postalCode": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "country": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phone": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "fax": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "customerCustomerDemo": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/CustomerCustomerDemo" }
+        },
+        "orders": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Order" }
+        }
+      }
+    },
+    "CustomerCustomerDemo": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "maxLength": 5,
+          "minLength": 0,
+          "type": "string"
+        },
+        "customerTypeId": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "customer": { "$ref": "#/definitions/Customer" },
+        "customerType": { "$ref": "#/definitions/CustomerDemographic" }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "customerId": {
+          "maxLength": 5,
+          "minLength": 0,
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "requiredDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "shippedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "shipVia": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "freight": {
+          "format": "double",
+          "type": "number"
+        },
+        "shipName": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shipAddress": {
+          "maxLength": 60,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shipCity": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shipRegion": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shipPostalCode": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shipCountry": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "customer": { "$ref": "#/definitions/Customer" },
+        "employee": { "$ref": "#/definitions/Employee" },
+        "shipper": { "$ref": "#/definitions/Shipper" },
+        "orderDetails": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/OrderDetail" }
+        }
+      }
+    },
+    "CustomerDemographic": {
+      "type": "object",
+      "properties": {
+        "customerTypeId": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "customerDesc": { "type": "string" },
+        "customerCustomerDemo": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/CustomerCustomerDemo" }
+        }
+      }
+    },
+    "Employee": {
+      "required": [ "lastName", "firstName" ],
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastName": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 30,
+          "minLength": 0,
+          "type": "string"
+        },
+        "titleOfCourtesy": {
+          "maxLength": 25,
+          "minLength": 0,
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "hireDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "address": {
+          "maxLength": 60,
+          "minLength": 0,
+          "type": "string"
+        },
+        "city": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "region": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "postalCode": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "country": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "homePhone": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "extension": {
+          "maxLength": 4,
+          "minLength": 0,
+          "type": "string"
+        },
+        "photo": {
+          "format": "byte",
+          "type": "string"
+        },
+        "notes": { "type": "string" },
+        "reportsTo": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "photoPath": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "manager": { "$ref": "#/definitions/Employee" },
+        "employeeTerritories": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/EmployeeTerritory" }
+        },
+        "directReports": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Employee" }
+        },
+        "orders": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Order" }
+        }
+      }
+    },
+    "Shipper": {
+      "required": [ "companyName" ],
+      "type": "object",
+      "properties": {
+        "shipperId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "companyName": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phone": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "orders": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Order" }
+        }
+      }
+    },
+    "OrderDetail": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "discount": {
+          "format": "float",
+          "type": "number"
+        },
+        "order": { "$ref": "#/definitions/Order" },
+        "product": { "$ref": "#/definitions/Product" }
+      }
+    },
+    "EmployeeTerritory": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "territoryId": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "employee": { "$ref": "#/definitions/Employee" },
+        "territory": { "$ref": "#/definitions/Territory" }
+      }
+    },
+    "Product": {
+      "required": [ "productName" ],
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productName": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "supplierId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantityPerUnit": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "unitPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "unitsInStock": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitsOnOrder": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reorderLevel": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "discontinued": { "type": "boolean" },
+        "category": { "$ref": "#/definitions/Category" },
+        "supplier": { "$ref": "#/definitions/Supplier" },
+        "orderDetails": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/OrderDetail" }
+        }
+      }
+    },
+    "Territory": {
+      "required": [ "territoryDescription" ],
+      "type": "object",
+      "properties": {
+        "territoryId": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "territoryDescription": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "regionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": { "$ref": "#/definitions/Region" },
+        "employeeTerritories": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/EmployeeTerritory" }
+        }
+      }
+    },
+    "Category": {
+      "required": [ "categoryName" ],
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryName": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": { "type": "string" },
+        "picture": {
+          "format": "byte",
+          "type": "string"
+        },
+        "products": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Product" }
+        }
+      }
+    },
+    "Supplier": {
+      "required": [ "companyName" ],
+      "type": "object",
+      "properties": {
+        "supplierId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "companyName": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "contactName": {
+          "maxLength": 30,
+          "minLength": 0,
+          "type": "string"
+        },
+        "contactTitle": {
+          "maxLength": 30,
+          "minLength": 0,
+          "type": "string"
+        },
+        "address": {
+          "maxLength": 60,
+          "minLength": 0,
+          "type": "string"
+        },
+        "city": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "region": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "postalCode": {
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
+        },
+        "country": {
+          "maxLength": 15,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phone": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "fax": {
+          "maxLength": 24,
+          "minLength": 0,
+          "type": "string"
+        },
+        "homePage": { "type": "string" },
+        "products": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Product" }
+        }
+      }
+    },
+    "Region": {
+      "required": [ "regionDescription" ],
+      "type": "object",
+      "properties": {
+        "regionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "regionDescription": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "territories": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": { "$ref": "#/definitions/Territory" }
+        }
+      }
+    }
+  }
+}
